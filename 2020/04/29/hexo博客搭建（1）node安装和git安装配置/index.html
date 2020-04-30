@@ -8,18 +8,20 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>hexo博客搭建（1）node安装和git安装配置 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="title: hexo博客搭建（1）node安装和git安装配置date: 2020-04-29 14:11:57tags:">
+  <meta name="description" content="安装node.js 以Windows环境安装node.js为例，首先登录node.js官网，选择适合自己的版本进行下载，然后进行安装。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="hexo博客搭建（1）node安装和git安装配置">
 <meta property="og:url" content="http://yoursite.com/2020/04/29/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%EF%BC%881%EF%BC%89node%E5%AE%89%E8%A3%85%E5%92%8Cgit%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="title: hexo博客搭建（1）node安装和git安装配置date: 2020-04-29 14:11:57tags:">
+<meta property="og:description" content="安装node.js 以Windows环境安装node.js为例，首先登录node.js官网，选择适合自己的版本进行下载，然后进行安装。">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://q9lc59ie7.bkt.clouddn.com/2.webp.jpg">
 <meta property="og:image" content="http://q9lc59ie7.bkt.clouddn.com/1.png">
 <meta property="og:image" content="http://q9lc59ie7.bkt.clouddn.com/3.webp.jpg">
-<meta property="article:published_time" content="2020-04-29T06:11:57.879Z">
-<meta property="article:modified_time" content="2020-04-30T10:05:12.305Z">
+<meta property="og:image" content="http://q9lc59ie7.bkt.clouddn.com/4.png">
+<meta property="og:image" content="http://q9lc59ie7.bkt.clouddn.com/5.png">
+<meta property="article:published_time" content="2020-04-29T06:11:57.000Z">
+<meta property="article:modified_time" content="2020-04-30T11:39:38.265Z">
 <meta property="article:author" content="吱屋猪.">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://q9lc59ie7.bkt.clouddn.com/2.webp.jpg">
@@ -185,31 +187,48 @@
 
         
         <a href="/2020/04/29/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%EF%BC%881%EF%BC%89node%E5%AE%89%E8%A3%85%E5%92%8Cgit%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" class="archive-article-date">
-  	<time datetime="2020-04-29T06:11:57.879Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-29</time>
+  	<time datetime="2020-04-29T06:11:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-29</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <hr>
-<p>title: hexo博客搭建（1）node安装和git安装配置<br>date: 2020-04-29 14:11:57<br>tags:</p>
-<hr>
-<a id="more"></a>  
-<h1 id="安装node-js"><a href="#安装node-js" class="headerlink" title="安装node.js"></a>安装node.js</h1><p> 以Windows环境安装node.js为例，首先登录<a href="https://nodejs.org/en/" target="_blank" rel="noopener">node.js</a>官网，选择适合自己的版本进行下载，然后进行安装。  </p>
-<p><img src="http://q9lc59ie7.bkt.clouddn.com/2.webp.jpg" alt><br>完成后在CMD窗口中输入下面指令:</p>
-<blockquote>
-<p>node -v</p>
-</blockquote>
-<p>显示如下版本号，则表示Node.js安装成功。</p>
+        <h1 id="安装node-js"><a href="#安装node-js" class="headerlink" title="安装node.js"></a>安装node.js</h1><p> 以Windows环境安装node.js为例，首先登录<a href="https://nodejs.org/en/" target="_blank" rel="noopener">node.js</a>官网，选择适合自己的版本进行下载，然后进行安装。<br> <a id="more"></a>  </p>
+<p><img src="http://q9lc59ie7.bkt.clouddn.com/2.webp.jpg" alt><br>完成后在CMD窗口中输入下面指令,显示如下版本号，则表示Node.js安装成功。</p>
 <blockquote>
 <p>C:\Users\Administrator&gt;node -v</p>
 <p>v12.16.1</p>
 </blockquote>
+<p>继续在cmd窗口输入下面指令,显示如下版本号，则表示Node.js安装成功。</p>
+<blockquote>
+<p>C:\Users\Administrator&gt;npm -v</p>
+<p>6.13.4  </p>
+</blockquote>
 <h1 id="安装Git"><a href="#安装Git" class="headerlink" title="安装Git"></a>安装Git</h1><p>登录<a href="https://git-scm.com/" target="_blank" rel="noopener">Git</a>官网选择版本进行下载，基本一路next下去即可轻松完成安装。</p>
-<p><img src="http://q9lc59ie7.bkt.clouddn.com/1.png" alt><br>注意: </p>
+<p><img src="http://q9lc59ie7.bkt.clouddn.com/1.png" alt>  </p>
+<p>注意: </p>
 <p>安装过程中，注意勾选在右键菜单建立git bash快捷方式一项，因为之后的各种操作都需要在git bash中用命令行进行操作，方便随时随地打开命令窗口。</p>
-<p><img src="http://q9lc59ie7.bkt.clouddn.com/3.webp.jpg" alt></p>
+<p><img src="http://q9lc59ie7.bkt.clouddn.com/3.webp.jpg" alt>  </p>
+<h1 id="安装淘宝镜像源"><a href="#安装淘宝镜像源" class="headerlink" title="安装淘宝镜像源"></a>安装淘宝镜像源</h1><p>输入以下命令，安装淘宝的镜像源（如果有错误就重来，因为链接可能不稳定，不要害怕多试几次就可以了）</p>
+<blockquote>
+<p>npm install -g cnpm –registry=<a href="https://registry.npm.taobao.org" target="_blank" rel="noopener">https://registry.npm.taobao.org</a></p>
+</blockquote>
+<p>出现下面这个画面就说明镜像源安装好啦<br><img src="http://q9lc59ie7.bkt.clouddn.com/4.png" alt><br>接下来检测一下：</p>
+<blockquote>
+<p>cnpm //返回cnpm信息</p>
+<p>cnpm -v //返回cnpm的版本信息</p>
+</blockquote>
+<h1 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h1><p>输入以下命令检测（如果失败重新来过就可以了）</p>
+<blockquote>
+<p>cnpm install -g hexo-cli</p>
+</blockquote>
+<p>继续输入，返回hexo的版本信息</p>
+<blockquote>
+<p>hexo -v</p>
+</blockquote>
+<p><img src="http://q9lc59ie7.bkt.clouddn.com/5.png" alt></p>
+<p>做到这里，hexo就安装成功啦！</p>
 
       
 
@@ -342,7 +361,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#安装node-js"><span class="toc-number">1.</span> <span class="toc-text">安装node.js</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#安装Git"><span class="toc-number">2.</span> <span class="toc-text">安装Git</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#安装node-js"><span class="toc-number">1.</span> <span class="toc-text">安装node.js</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#安装Git"><span class="toc-number">2.</span> <span class="toc-text">安装Git</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#安装淘宝镜像源"><span class="toc-number">3.</span> <span class="toc-text">安装淘宝镜像源</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#安装hexo"><span class="toc-number">4.</span> <span class="toc-text">安装hexo</span></a></li></ol>
                     </div>
                 </span>
             </div>
