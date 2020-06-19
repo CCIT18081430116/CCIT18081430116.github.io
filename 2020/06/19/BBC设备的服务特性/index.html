@@ -17,7 +17,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://yoursite.com/images/1.png">
 <meta property="article:published_time" content="2020-06-19T09:31:15.000Z">
-<meta property="article:modified_time" content="2020-06-19T10:30:50.836Z">
+<meta property="article:modified_time" content="2020-06-19T10:36:58.028Z">
 <meta property="article:author" content="吱屋猪.">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://yoursite.com/images/1.png">
@@ -183,78 +183,36 @@
 <p>接下来编写如下代码：</p>
 <blockquote>
 <p>var has_accelerometer_service = false; </p>
-</blockquote>
-<blockquote>
 <p>var has_accelerometer_data = false; </p>
-</blockquote>
-<blockquote>
 <p>var has_led_service = false;</p>
-</blockquote>
-<blockquote>
 <p>var has_led_matrix_state = false; </p>
-</blockquote>
-<blockquote>
 <p>var has_led_text=false     //新加的led_text特性相关语句</p>
-</blockquote>
-<blockquote>
 <p>var has_device_information_service = false; </p>
-</blockquote>
-<blockquote>
 <p>var has_model_name_string = false;</p>
 </blockquote>
 <blockquote>
 <p>// service UUIDs </p>
-</blockquote>
-<blockquote>
 <p>ACCELEROMETER_SERVICE =’e95d0753-251d-470a-a062-fa1922dfa9a8’;</p>
-</blockquote>
-<blockquote>
 <p>LED_SERVICE = ‘e95dd91d-251d-470a-a062-fa1922dfa9a8’; </p>
-</blockquote>
-<blockquote>
 <p>DEVICE_INFORMATION_SERVICE=’0000180a-0000-1000-8000-00805f9b34f;</p>
-</blockquote>
-<blockquote>
 <p>// characteristic UUIDs </p>
-</blockquote>
-<blockquote>
 <p>ACCELEROMETER_DATA = ‘e95dca4b-251d-470a-a062-fa1922dfa9a8’;</p>
-</blockquote>
-<blockquote>
 <p>LED_MATRIX_STATE  = ‘e95d7b77-251d-470a-a062-fa1922dfa9a8’; </p>
-</blockquote>
-<blockquote>
 <p>LED_TEXT=’e95d93ee-251d-470a-a062-fa1922dfa9a8’  //新加的led_text特性相关语句</p>
-</blockquote>
-<blockquote>
 <p>MODEL_NUMBER_STRING = ‘00002a24-0000-1000-8000-00805f9b34fb’;</p>
-</blockquote>
-<blockquote>
 <p>// cached characteristics var accelerometer_data; </p>
-</blockquote>
-<blockquote>
 <p>var led_matrix_state; </p>
-</blockquote>
-<blockquote>
 <p>var led_text;          //新加的led_text特性相关语句</p>
-</blockquote>
-<blockquote>
 <p>var model_number_string;</p>
-</blockquote>
-<blockquote>
 <p>var accelerometer_data;</p>
 </blockquote>
 <blockquote>
 <p>var options = {acceptAllDevices:true,</p>
-</blockquote>
-<blockquote>
-<pre><code>optionalServices: [DEVICE_INFORMATION_SERVICE,ACCELEROMETER_SERVICE, LED_SERVICE]  //在第5节课上添加</code></pre></blockquote>
-<blockquote>
-<pre><code>}</code></pre></blockquote>
+<pre><code>    optionalServices: [DEVICE_INFORMATION_SERVICE,ACCELEROMETER_SERVICE, LED_SERVICE]  //在第5节课上添加
+
+}</code></pre></blockquote>
 <blockquote>
 <p>function discoverSvcsAndChars() //在第5课基础上添加的函数:</p>
-</blockquote>
-<blockquote>
 <pre><code>{  
     console.log(&quot;discoverSvcsAndChars server=&quot; + connected_server); 
     connected_server.getPrimaryServices()
@@ -330,52 +288,26 @@
 }</code></pre></blockquote>
 <blockquote>
 <p>function setDiscoveryStatus(status)</p>
-</blockquote>
-<blockquote>
 <p>{</p>
-</blockquote>
-<blockquote>
 <p>   services_discovered=status;</p>
-</blockquote>
-<blockquote>
 <p>   document.getElementById(‘status_discovered’).innerHTML=status;</p>
-</blockquote>
-<blockquote>
 <p>}</p>
 </blockquote>
 <p>将.html文件在Chrome打开，连接BBC板，按Fn+F12，就会显示LED的服务和它的一些特性，当表格中的Service Discovery Completed为true就表示服务都成功了。</p>
 <h2 id="BBC设备的温度服务及特性"><a href="#BBC设备的温度服务及特性" class="headerlink" title="BBC设备的温度服务及特性"></a>BBC设备的温度服务及特性</h2><p>这个操作还是跟上面的LED服务及特性类似，在电脑端编辑以下代码：</p>
 <blockquote>
 <p>// presence of services and characteristics </p>
-</blockquote>
-<blockquote>
 <p>var has_temperature_service =false;    //温度</p>
-</blockquote>
-<blockquote>
 <p>var has_tem_temperature = false;  </p>
-</blockquote>
-<blockquote>
 <p>// service UUIDs </p>
-</blockquote>
-<blockquote>
 <p>TEMPERATURE_SERVICE =’e95d6100-251d-470a-a062-fa1922dfa9a8’; </p>
-</blockquote>
-<blockquote>
 <p>// characteristic UUIDs </p>
-</blockquote>
-<blockquote>
 <p>TEM_TEMPERATURE =’e95d9250-251d-470a-a062-fa1922dfa9a8’;</p>
-</blockquote>
-<blockquote>
 <p>// cached characteristics var accelerometer_data; </p>
-</blockquote>
-<blockquote>
 <p>var tem_temperature;</p>
 </blockquote>
 <blockquote>
 <p>function discoverSvcsAndChars()    //在第5课基础上添加的函数</p>
-</blockquote>
-<blockquote>
 <pre><code>{  
     console.log(&quot;discoverSvcsAndChars server=&quot; + connected_server); 
     connected_server.getPrimaryServices()
@@ -453,11 +385,9 @@
 }</code></pre></blockquote>
 <blockquote>
 <p>var options = {acceptAllDevices:true,</p>
-</blockquote>
-<blockquote>
-<pre><code>optionalServices: [DEVICE_INFORMATION_SERVICE, ACCELEROMETER_SERVICE, LED_SERVICE,TEMPERATURE_SERVICE]  </code></pre></blockquote>
-<blockquote>
-<pre><code>}        //发现所有周边蓝牙设备</code></pre></blockquote>
+<pre><code>    optionalServices: [DEVICE_INFORMATION_SERVICE, ACCELEROMETER_SERVICE, LED_SERVICE,TEMPERATURE_SERVICE]  
+
+}        //发现所有周边蓝牙设备</code></pre></blockquote>
 <p>重复第一步的操作打开网页，按Fn+F12组合键，连接蓝牙开发板，显示会多出一个服务和相对应的特性，温度服务和一个特性就添加成功了。</p>
 
       
