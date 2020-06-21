@@ -6,21 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>BBC设备的服务特性 | Hexo</title>
+  <title>BBC设备的读写特性 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="BBC设备的LED服务及特性">
+  <meta name="description" content="读取BBC开发板的名称">
 <meta property="og:type" content="article">
-<meta property="og:title" content="BBC设备的服务特性">
-<meta property="og:url" content="http://yoursite.com/2020/06/19/BBC%E8%AE%BE%E5%A4%87%E7%9A%84%E6%9C%8D%E5%8A%A1%E7%89%B9%E6%80%A7/index.html">
+<meta property="og:title" content="BBC设备的读写特性">
+<meta property="og:url" content="http://yoursite.com/2020/06/21/BBC%E8%AE%BE%E5%A4%87%E7%9A%84%E8%AF%BB%E5%86%99%E7%89%B9%E6%80%A7/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="BBC设备的LED服务及特性">
+<meta property="og:description" content="读取BBC开发板的名称">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://yoursite.com/images/1.png">
-<meta property="article:published_time" content="2020-06-19T09:31:15.000Z">
-<meta property="article:modified_time" content="2020-06-19T10:36:58.028Z">
+<meta property="article:published_time" content="2020-06-21T04:29:29.000Z">
+<meta property="article:modified_time" content="2020-06-21T05:05:40.540Z">
 <meta property="article:author" content="吱屋猪.">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/images/1.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -156,239 +154,117 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-BBC设备的服务特性" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-BBC设备的读写特性" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      BBC设备的服务特性
+      BBC设备的读写特性
     </h1>
   
 
         
-        <a href="/2020/06/19/BBC%E8%AE%BE%E5%A4%87%E7%9A%84%E6%9C%8D%E5%8A%A1%E7%89%B9%E6%80%A7/" class="archive-article-date">
-  	<time datetime="2020-06-19T09:31:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-19</time>
+        <a href="/2020/06/21/BBC%E8%AE%BE%E5%A4%87%E7%9A%84%E8%AF%BB%E5%86%99%E7%89%B9%E6%80%A7/" class="archive-article-date">
+  	<time datetime="2020-06-21T04:29:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-21</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="BBC设备的LED服务及特性"><a href="#BBC设备的LED服务及特性" class="headerlink" title="BBC设备的LED服务及特性"></a>BBC设备的LED服务及特性</h2><a id="more"></a>  
+        <h2 id="读取BBC开发板的名称"><a href="#读取BBC开发板的名称" class="headerlink" title="读取BBC开发板的名称"></a>读取BBC开发板的名称</h2><a id="more"></a>  
 
-<p>打开Chrome浏览器，输入chrome://bluetooth-internals,点击右上方的Start Scan,找到自己的BBC板连接，连接成功后就可以看到多个服务，服务里有LED服务，就可以编写代码了。</p>
-<p><img src="/images/1.png" alt></p>
-<p>接下来编写如下代码：</p>
+<p>我们要添加一个函数，程序代码如下：</p>
 <blockquote>
-<p>var has_accelerometer_service = false; </p>
-<p>var has_accelerometer_data = false; </p>
-<p>var has_led_service = false;</p>
-<p>var has_led_matrix_state = false; </p>
-<p>var has_led_text=false     //新加的led_text特性相关语句</p>
-<p>var has_device_information_service = false; </p>
-<p>var has_model_name_string = false;</p>
+<p>function readModelNumber() </p>
 </blockquote>
-<blockquote>
-<p>// service UUIDs </p>
-<p>ACCELEROMETER_SERVICE =’e95d0753-251d-470a-a062-fa1922dfa9a8’;</p>
-<p>LED_SERVICE = ‘e95dd91d-251d-470a-a062-fa1922dfa9a8’; </p>
-<p>DEVICE_INFORMATION_SERVICE=’0000180a-0000-1000-8000-00805f9b34f;</p>
-<p>// characteristic UUIDs </p>
-<p>ACCELEROMETER_DATA = ‘e95dca4b-251d-470a-a062-fa1922dfa9a8’;</p>
-<p>LED_MATRIX_STATE  = ‘e95d7b77-251d-470a-a062-fa1922dfa9a8’; </p>
-<p>LED_TEXT=’e95d93ee-251d-470a-a062-fa1922dfa9a8’  //新加的led_text特性相关语句</p>
-<p>MODEL_NUMBER_STRING = ‘00002a24-0000-1000-8000-00805f9b34fb’;</p>
-<p>// cached characteristics var accelerometer_data; </p>
-<p>var led_matrix_state; </p>
-<p>var led_text;          //新加的led_text特性相关语句</p>
-<p>var model_number_string;</p>
-<p>var accelerometer_data;</p>
-</blockquote>
-<blockquote>
-<p>var options = {acceptAllDevices:true,</p>
-<pre><code>    optionalServices: [DEVICE_INFORMATION_SERVICE,ACCELEROMETER_SERVICE, LED_SERVICE]  //在第5节课上添加
-
-}</code></pre></blockquote>
-<blockquote>
-<p>function discoverSvcsAndChars() //在第5课基础上添加的函数:</p>
 <pre><code>{  
-    console.log(&quot;discoverSvcsAndChars server=&quot; + connected_server); 
-    connected_server.getPrimaryServices()
-    .then(services =&gt; 
-    {    
-            has_accelerometer_service = false;    
-            has_led_service = false;    
-            has_device_information_service = false; 
 
-            services_discovered = 0;    
-            service_count = services.length;    
-            console.log(&quot;Got &quot; + service_count + &quot; services&quot;);        
-            services.forEach(service =&gt; 
-            {     
-                if (service.uuid == ACCELEROMETER_SERVICE)
-                {      
-                    has_accelerometer_service = true;    
-                }   
-                if (service.uuid == LED_SERVICE) 
-                {      
-                    has_led_service = true;     
-                }     
-               if (service.uuid == DEVICE_INFORMATION_SERVICE) 
-                {      
-                    has_device_information_service = true;     
-                } 
-                if (service.uuid == TEMPERATURE_SERVICE) //温度
-                {      
-                    has_temperature_service = true;     
-                }        
-                console.log(&apos;Getting Characteristics for service &apos; + service.uuid);     
-                service.getCharacteristics()
-                .then(characteristics =&gt; 
-                {      
-                    console.log(&apos;&gt; Service: &apos; + service.uuid);      
-                    services_discovered++;     
-                    characteristics_discovered = 0;      
-                    characteristic_count = characteristics.length;      
-                    characteristics.forEach(characteristic =&gt; 
-                    {       
-                        characteristics_discovered++;       
-                        console.log(&apos;&gt;&gt; Characteristic: &apos; + characteristic.uuid);       
-                        if (characteristic.uuid == ACCELEROMETER_DATA)
-                        {        
-                            accelerometer_data = characteristic;        
-                            has_accelerometer_data = true;       
-                        }      
-                        if (characteristic.uuid == LED_MATRIX_STATE) 
-                        {        
-                            led_matrix_state = characteristic;        
-                            has_led_matrix_state = true;       
-                        } 
-                        if (characteristic.uuid == LED_TEXT)    //新加的led_text特性相关语句
-                        {        
-                            led_text = characteristic;        
-                            has_led_text = true;       
-                        }       
-                        if (characteristic.uuid == MODEL_NUMBER_STRING) 
-                        {        
-                            model_number_string = characteristic;        
-                            has_model_name_string = true;       
-                        }
-                        if (services_discovered == service_count &amp;&amp; characteristics_discovered == characteristic_count) 
-                        {        
-                            console.log(&quot;FINISHED DISCOVERY&quot;); 
-                            setDiscoveryStatus(true);       
-                            //setDiscoveryStatus(true);                  
-                        }    
-                    });     
-                });    
-            });  
-    });
-}</code></pre></blockquote>
+console.log(&quot;readModelNumber&quot;);   
+// state validation   
+if (!connected) 
+{     
+    alert(&quot;Error: Discover and connect to a device before using this function&quot;);     
+    return;   
+}   
+if (!services_discovered) 
+{     
+    alert(&quot;Error: Service discovery has not yet completed&quot;);     
+    return;   
+}    
+if (!has_device_information_service) 
+{     
+    alert(&quot;Error: The connected device does not contain the device information service&quot;);     
+    return;   
+}   
+if (!has_model_name_string) 
+{     
+    alert(&quot;Error: The connected device does not contain the model name string characteristic&quot;);     
+    return;   
+}   
+
+model_number_string.readValue()  
+.then(value =&gt; {   
+    data = new Uint8Array(value.buffer);   
+    model_number_string = new TextDecoder(&quot;utf-8&quot;).decode(data);  
+    console.log(model_number_string);   
+    document.getElementById(&quot;model_number&quot;).innerHTML = model_number_string;  
+    })  
+.catch(error =&gt; {  
+    console.log(&apos;Error: &apos; + error);   
+    alert(&apos;Error: &apos; + error);   
+    return;  
+    }); 
+}</code></pre><p>然后添加一个按钮，这个按钮可以调用readModelNumber() 函数，读取到BBC板子的信息。然后就可以连接BBC板子，用Chrome浏览器打开该网页，点击按钮，就可以读到BBC板子的名称了。</p>
+<h2 id="控制开发板板载LED灯的亮灭"><a href="#控制开发板板载LED灯的亮灭" class="headerlink" title="控制开发板板载LED灯的亮灭"></a>控制开发板板载LED灯的亮灭</h2><p>控制LED灯的亮灭就要用到LED的服务及特性，这里用的是LED服务的LED_MATRIX_STATE特性，我们添加一个randomLEDs()函数，用来控制小灯的亮灭，代码如下：</p>
 <blockquote>
-<p>function setDiscoveryStatus(status)</p>
-<p>{</p>
-<p>   services_discovered=status;</p>
-<p>   document.getElementById(‘status_discovered’).innerHTML=status;</p>
-<p>}</p>
+<p>function randomLEDs()   //第6课上添加</p>
 </blockquote>
-<p>将.html文件在Chrome打开，连接BBC板，按Fn+F12，就会显示LED的服务和它的一些特性，当表格中的Service Discovery Completed为true就表示服务都成功了。</p>
-<h2 id="BBC设备的温度服务及特性"><a href="#BBC设备的温度服务及特性" class="headerlink" title="BBC设备的温度服务及特性"></a>BBC设备的温度服务及特性</h2><p>这个操作还是跟上面的LED服务及特性类似，在电脑端编辑以下代码：</p>
-<blockquote>
-<p>// presence of services and characteristics </p>
-<p>var has_temperature_service =false;    //温度</p>
-<p>var has_tem_temperature = false;  </p>
-<p>// service UUIDs </p>
-<p>TEMPERATURE_SERVICE =’e95d6100-251d-470a-a062-fa1922dfa9a8’; </p>
-<p>// characteristic UUIDs </p>
-<p>TEM_TEMPERATURE =’e95d9250-251d-470a-a062-fa1922dfa9a8’;</p>
-<p>// cached characteristics var accelerometer_data; </p>
-<p>var tem_temperature;</p>
-</blockquote>
-<blockquote>
-<p>function discoverSvcsAndChars()    //在第5课基础上添加的函数</p>
 <pre><code>{  
-    console.log(&quot;discoverSvcsAndChars server=&quot; + connected_server); 
-    connected_server.getPrimaryServices()
-    .then(services =&gt; 
-    {    
-            has_accelerometer_service = false;    
-            has_led_service = false;    
-            has_device_information_service = false; 
-            has_temperature_service=false;  //温度
 
-            services_discovered = 0;    
-            service_count = services.length;    
-            console.log(&quot;Got &quot; + service_count + &quot; services&quot;); 
+    console.log(&quot;randomLEDs&quot;);   
+    // state validation   
+    if (!connected) 
+    {     
+        alert(&quot;Error: Discover and connect to a device before using this function&quot;);     
+        return;   
+    }   
+    if (!services_discovered) 
+    {     
+        alert(&quot;Error: Service discovery has not yet completed&quot;);     
+        return;  
+    }   
+    if (!has_led_service) 
+    {     
+        alert(&quot;Error: The connected device does not contain the LED service&quot;);     
+        return;  
+    }   
+    if (!has_led_matrix_state) 
+    {      
+        alert(&quot;Error: The connected device does not contain the LED matrix state characteristic&quot;);      
+        return;   
+    }   
+    var led_array = [0, 0, 0, 0, 0];   
 
-            services.forEach(service =&gt; 
-            {     
-                if (service.uuid == ACCELEROMETER_SERVICE)
-                {      
-                    has_accelerometer_service = true;    
-                }   
-                if (service.uuid == LED_SERVICE) 
-                {      
-                    has_led_service = true;     
-                }     
-               if (service.uuid == DEVICE_INFORMATION_SERVICE) 
-                {      
-                    has_device_information_service = true;     
-                } 
-                if (service.uuid == TEMPERATURE_SERVICE) //温度
-                {      
-                    has_temperature_service = true;     
-                }        
-                console.log(&apos;Getting Characteristics for service &apos; + service.uuid);     
-                service.getCharacteristics()
-                .then(characteristics =&gt; 
-                {      
-                    console.log(&apos;&gt; Service: &apos; + service.uuid);      
-                    services_discovered++;     
-                    characteristics_discovered = 0;      
-                    characteristic_count = characteristics.length;      
-                    characteristics.forEach(characteristic =&gt; 
-                    {       
-                        characteristics_discovered++;       
-                        console.log(&apos;&gt;&gt; Characteristic: &apos; + characteristic.uuid);       
-                        if (characteristic.uuid == ACCELEROMETER_DATA)
-                        {        
-               accelerometer_data=characteristic;        
-                            has_accelerometer_data = true;       
-                        }      
-                        if (characteristic.uuid == LED_MATRIX_STATE) 
-                        {        
-                            led_matrix_state = characteristic;        
-                            has_led_matrix_state = true;       
-                        }       
-                        if (characteristic.uuid == MODEL_NUMBER_STRING) 
-                        {        
-                            model_number_string = characteristic;        
-                            has_model_name_string = true;       
-                        }
-                        if(characteristic.uuid == TEM_TEMPERATURE)  //温度
-                        {
-                            tem_temperature = characteristic; 
-                            has_tem_temperature = true;
-                        }     
-                        if (services_discovered == service_count &amp;&amp; characteristics_discovered == characteristic_count) 
-                        {        
-                            console.log(&quot;FINISHED DISCOVERY&quot;); 
-                            setDiscoveryStatus(true);       
-                            //setDiscoveryStatus(true);                  
-                        }    
-                    });     
-                });    
-            });  
-    });
-}</code></pre></blockquote>
-<blockquote>
-<p>var options = {acceptAllDevices:true,</p>
-<pre><code>    optionalServices: [DEVICE_INFORMATION_SERVICE, ACCELEROMETER_SERVICE, LED_SERVICE,TEMPERATURE_SERVICE]  
+     // Math.random():0~1  Math.floor(x):返回小于等于x的最大整数
+    led_array[0] = Math.floor(Math.random() * 32);  
+    led_array[1] = 1;   
+    led_array[2] = 2;   
+    led_array[3] = 3;   
+    led_array[4] = 4;
+    var led_matrix_data = new Uint8Array(led_array); 
 
-}        //发现所有周边蓝牙设备</code></pre></blockquote>
-<p>重复第一步的操作打开网页，按Fn+F12组合键，连接蓝牙开发板，显示会多出一个服务和相对应的特性，温度服务和一个特性就添加成功了。</p>
+    led_matrix_state.writeValue(led_matrix_data.buffer)
+    .then(_ =&gt; {   
+        console.log(&apos;LED matrix state changed&apos;);  
+        })  
+    .catch(error =&gt; {   
+        console.log(&apos;Error: &apos; + error);   
+        alert(&apos;Error: &apos; + error);   return;  
+        }); 
+}</code></pre><p>我们可以也添加一个按钮，在上方数组中 led_array[0]是随机产生0到31之间的数，这样就可以每按一次，第一排小灯就会变化一次。然后就可以连接蓝牙开发板，按一次按钮，第一排小灯就发生一次变化，说明我们就成功实现了控制小灯的亮灭。</p>
 
       
 
@@ -468,7 +344,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/06/19/BBC%E8%AE%BE%E5%A4%87%E7%9A%84%E6%9C%8D%E5%8A%A1%E7%89%B9%E6%80%A7/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/06/21/BBC%E8%AE%BE%E5%A4%87%E7%9A%84%E8%AF%BB%E5%86%99%E7%89%B9%E6%80%A7/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -482,18 +358,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/06/21/BBC%E8%AE%BE%E5%A4%87%E7%9A%84%E8%AF%BB%E5%86%99%E7%89%B9%E6%80%A7/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          BBC设备的读写特性
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/06/16/%E8%93%9D%E7%89%99%E8%AE%BE%E5%A4%87%E8%BF%9E%E6%8E%A5/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">蓝牙设备连接</div>
+    <a href="/2020/06/19/BBC%E8%AE%BE%E5%A4%87%E7%9A%84%E6%9C%8D%E5%8A%A1%E7%89%B9%E6%80%A7/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">BBC设备的服务特性</div>
       <i class="icon-circle-right"></i>
     </a>
   
