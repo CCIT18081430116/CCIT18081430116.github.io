@@ -6,17 +6,13 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>BBC设备的读写特性 | Hexo</title>
+  <title>Archives | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="读取BBC开发板的名称">
-<meta property="og:type" content="article">
-<meta property="og:title" content="BBC设备的读写特性">
-<meta property="og:url" content="http://yoursite.com/2020/06/21/BBC%E8%AE%BE%E5%A4%87%E7%9A%84%E8%AF%BB%E5%86%99%E7%89%B9%E6%80%A7/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/archives/page/2/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="读取BBC开发板的名称">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-06-21T04:29:29.000Z">
-<meta property="article:modified_time" content="2020-06-21T05:05:40.540Z">
 <meta property="article:author" content="吱屋猪.">
 <meta name="twitter:card" content="summary">
   
@@ -154,254 +150,52 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-BBC设备的读写特性" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      BBC设备的读写特性
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2020" class="archive-year">2020</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2020/03/20/hello-world/" class="archive-article-date">
+  	<time datetime="2020-03-20T09:18:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-03-20</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2020/03/20/hello-world/">Hello World</a>
     </h1>
   
 
-        
-        <a href="/2020/06/21/BBC%E8%AE%BE%E5%A4%87%E7%9A%84%E8%AF%BB%E5%86%99%E7%89%B9%E6%80%A7/" class="archive-article-date">
-  	<time datetime="2020-06-21T04:29:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="读取BBC开发板的名称"><a href="#读取BBC开发板的名称" class="headerlink" title="读取BBC开发板的名称"></a>读取BBC开发板的名称</h2><a id="more"></a>  
+        <div class="article-info info-on-right">
+          
+          
 
-<p>我们要添加一个函数，程序代码如下：</p>
-<blockquote>
-<p>function readModelNumber() </p>
-</blockquote>
-<pre><code>{  
-
-console.log(&quot;readModelNumber&quot;);   
-// state validation   
-if (!connected) 
-{     
-    alert(&quot;Error: Discover and connect to a device before using this function&quot;);     
-    return;   
-}   
-if (!services_discovered) 
-{     
-    alert(&quot;Error: Service discovery has not yet completed&quot;);     
-    return;   
-}    
-if (!has_device_information_service) 
-{     
-    alert(&quot;Error: The connected device does not contain the device information service&quot;);     
-    return;   
-}   
-if (!has_model_name_string) 
-{     
-    alert(&quot;Error: The connected device does not contain the model name string characteristic&quot;);     
-    return;   
-}   
-
-model_number_string.readValue()  
-.then(value =&gt; {   
-    data = new Uint8Array(value.buffer);   
-    model_number_string = new TextDecoder(&quot;utf-8&quot;).decode(data);  
-    console.log(model_number_string);   
-    document.getElementById(&quot;model_number&quot;).innerHTML = model_number_string;  
-    })  
-.catch(error =&gt; {  
-    console.log(&apos;Error: &apos; + error);   
-    alert(&apos;Error: &apos; + error);   
-    return;  
-    }); 
-}</code></pre><p>然后添加一个按钮，这个按钮可以调用readModelNumber() 函数，读取到BBC板子的信息。然后就可以连接BBC板子，用Chrome浏览器打开该网页，点击按钮，就可以读到BBC板子的名称了。</p>
-<h2 id="控制开发板板载LED灯的亮灭"><a href="#控制开发板板载LED灯的亮灭" class="headerlink" title="控制开发板板载LED灯的亮灭"></a>控制开发板板载LED灯的亮灭</h2><p>控制LED灯的亮灭就要用到LED的服务及特性，这里用的是LED服务的LED_MATRIX_STATE特性，我们添加一个randomLEDs()函数，用来控制小灯的亮灭，代码如下：</p>
-<blockquote>
-<p>function randomLEDs()   //第6课上添加</p>
-</blockquote>
-<pre><code>{  
-
-    console.log(&quot;randomLEDs&quot;);   
-    // state validation   
-    if (!connected) 
-    {     
-        alert(&quot;Error: Discover and connect to a device before using this function&quot;);     
-        return;   
-    }   
-    if (!services_discovered) 
-    {     
-        alert(&quot;Error: Service discovery has not yet completed&quot;);     
-        return;  
-    }   
-    if (!has_led_service) 
-    {     
-        alert(&quot;Error: The connected device does not contain the LED service&quot;);     
-        return;  
-    }   
-    if (!has_led_matrix_state) 
-    {      
-        alert(&quot;Error: The connected device does not contain the LED matrix state characteristic&quot;);      
-        return;   
-    }   
-    var led_array = [0, 0, 0, 0, 0];   
-
-     // Math.random():0~1  Math.floor(x):返回小于等于x的最大整数
-    led_array[0] = Math.floor(Math.random() * 32);  
-    led_array[1] = 1;   
-    led_array[2] = 2;   
-    led_array[3] = 3;   
-    led_array[4] = 4;
-    var led_matrix_data = new Uint8Array(led_array); 
-
-    led_matrix_state.writeValue(led_matrix_data.buffer)
-    .then(_ =&gt; {   
-        console.log(&apos;LED matrix state changed&apos;);  
-        })  
-    .catch(error =&gt; {   
-        console.log(&apos;Error: &apos; + error);   
-        alert(&apos;Error: &apos; + error);   return;  
-        }); 
-}</code></pre><p>我们可以也添加一个按钮，在上方数组中 led_array[0]是随机产生0到31之间的数，这样就可以每按一次，第一排小灯就会变化一次。然后就可以连接蓝牙开发板，按一次按钮，第一排小灯就发生一次变化，说明我们就成功实现了控制小灯的亮灭。</p>
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
         </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
-        </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/06/21/BBC%E8%AE%BE%E5%A4%87%E7%9A%84%E8%AF%BB%E5%86%99%E7%89%B9%E6%80%A7/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2020/06/23/BBC%E5%90%AF%E7%94%A8%E9%80%9A%E7%9F%A5/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          BBC启用通知
-        
-      </div>
-    </a>
   
   
-    <a href="/2020/06/19/BBC%E8%AE%BE%E5%A4%87%E7%9A%84%E6%9C%8D%E5%8A%A1%E7%89%B9%E6%80%A7/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">BBC设备的服务特性</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
+    
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/archives/">&amp;laquo; Prev</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span>
+    </nav>
   
 
 
@@ -425,8 +219,8 @@ model_number_string.readValue()
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
